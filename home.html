@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      body {
+        background-color: cyan;
+        height: 100vh;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      .sub-menu {
+        visibility: hidden;
+        display: none !important;
+      }
+      .button-todo {
+        background: none;
+        outline: none !important;
+        border: 1px solid green;
+        border-radius: 5px;
+        color: green;
+        font-size: 15px;
+        width: 80px;
+        height: 30px;
+        font-family: Lato, sans-serif;
+        cursor: pointer;
+      }
+
+      .list-button {
+        cursor: pointer;
+        float: right;
+        background: none;
+        border: none !important;
+        outline: none !important;
+        border-radius: 5px;
+        color: green;
+        font-size: 12px;
+        width: 80px;
+        margin-top: 5px;
+      }
+
+      .list-button:active {
+        transform: translateY(6px);
+        outline: none !important;
+      }
+
+      .list-button:hover {
+        color: red;
+      }
+
+      .button-todo:active {
+        outline: none !important;
+        box-shadow: 0 0 0.5px;
+        transform: translateY(6px);
+        color: red;
+        border: 1px solid green !important;
+      }
+
+      .headings-todo {
+        margin-bottom: -10px;
+        font-size: medium;
+        font-family: Georgia, "Times New Roman", Times, serif bold;
+        font-weight: bold;
+      }
+
+      .card-todo {
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+        transition: 0.2s;
+        width: fit-content;
+        min-width: 50%;
+        max-width: 80%;
+        height: fit-content;
+        background-color: #fff;
+        margin-left: 10% !important;
+        border-radius: 10px;
+
+        /**text break: **/
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+        word-break: break-word;
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+
+      .center-todo {
+        text-align: center;
+      }
+
+      .card-center-todo {
+        color: black;
+        font-size: 25px;
+      }
+
+      .input-todo {
+        border-radius: 6px;
+        outline: none;
+        width: 70%;
+        height: 30px;
+        border: 1px solid darkgray;
+        font-display: Lato, sans Serif;
+        margin-top: -2%;
+        font-size: medium;
+        color: red;
+      }
+
+      .signout {
+        color: white;
+        cursor: pointer;
+      }
+
+      .signout :active {
+        color: red;
+        transform: translateY(4px);
+      }
+
+      .card-shadow {
+        cursor: pointer;
+      }
+
+      .card-shadow :hover {
+        animation: shake 2s;
+
+        /* When the animation is finished, start again */
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes shake {
+        0% {
+          transform: translate(1px, 1px) rotate(0deg);
+        }
+
+        10% {
+          transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+          transform: translate(-3px, 0px) rotate(1deg);
+        }
+
+        30% {
+          transform: translate(3px, 2px) rotate(0deg);
+        }
+
+        40% {
+          transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+          transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+          transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+          transform: translate(3px, 1px) rotate(-1deg);
+        }
+
+        80% {
+          transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+          transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+          transform: translate(1px, -2px) rotate(-1deg);
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .sub-menu {
+          display: flex !important;
+          visibility: visible !important;
+        }
+        .col-lg-3 {
+          visibility: hidden;
+          display: none !important;
+        }
+        .card-todo {
+          margin-left: 15% !important;
+          min-width: 40%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#Home">To-do</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button
+            type="button"
+            class="btn btn-outline-warning ml-auto signout"
+            onclick="signout()"
+          >
+            Logout<i class="ml-2 fa fa-sign-out fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+
+      <div class="row" id="Home">
+        <div class="col-lg-3 mt-4 ml-2">
+          <div
+            class="card"
+            bg="{transparent}"
+            style="height: max-content; width: fit-content"
+          >
+            <div class="card-body">
+              <ol class="nav flex-column ml-0" style="list-style-type: square">
+                <li class="nav-item">
+                  <a class="nav-link active" onclick="showTodo()" href="#"
+                    >To-do</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="showNews()" href="#">News</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="signout()" href="#">logout</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div style="width: 40% !important">
+            <a
+              class="weatherwidget-io mt-4"
+              id="weather-link"
+              href="https://forecast7.com/en/43d65n79d38/toronto/"
+              data-label_1="TORONTO"
+              data-label_2="WEATHER"
+              data-theme="sky"
+              >TORONTO WEATHER</a
+            >
+            <script>
+              !(function (d, s, id) {
+                var js,
+                  fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                  js = d.createElement(s);
+                  js.id = id;
+                  js.src = "https://weatherwidget.io/js/widget.min.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }
+              })(document, "script", "weatherwidget-io-js");
+            </script>
+          </div>
+        </div>
+
+        <div class="col-lg-8 mt-2">
+          <div class="sub-menu d-flex justify-content-center">
+            <button
+              type="button"
+              onclick="showTodo()"
+              class="btn btn-primary btn-lg"
+            >
+              To do-Task
+            </button>
+            <button
+              type="button"
+              onclick="showNews()"
+              class="btn btn-secondary btn-lg"
+            >
+              News
+            </button>
+          </div>
+
+          <div class="mt-4 ml-0 card-todo card-center-todo" id="to-do">
+            <h4 class="center-todo">To do</h4>
+            <div id="add-list">
+              <p class="headings-todo">ADD TASKS</p>
+              <hr />
+              <form onsubmit="return" false;>
+                <input class="input-todo" id="add-todo" type="text" required />
+                <button
+                  id="add-task"
+                  class="button-todo"
+                  type="submit"
+                  return
+                  false
+                >
+                  Add tasks
+                </button>
+              </form>
+            </div>
+            <div id="display-list">
+              <p class="headings-todo">TASK LIST</p>
+              <hr />
+              <ol id="add-item" style="color: green"></ol>
+            </div>
+
+            <div id="display-strike-list">
+              <p class="headings-todo">COMPLETED TASKS</p>
+              <hr !important />
+              <ol
+                id="add-strike-item"
+                style="text-decoration: line-through"
+              ></ol>
+            </div>
+          </div>
+          <!-- end of to -do task-->
+          <div id="news">
+            <h5
+              style="
+                text-align: center;
+                color: red;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                  sans-serif;
+              "
+            >
+              News
+            </h5>
+            <div class="card-deck" id="base_div"></div>
+          </div>
+        </div>
+      </div>
+      <!-- end of row. -->
+    </div>
+  </body>
+  <script type="text/javascript">
+    function preventBack() {
+      window.history.forward();
+    }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () {
+      null;
+    };
+  </script>
+  <script>
+    var news = document.getElementById("news");
+    var todo = document.getElementById("to-do");
+    todo.style.display = "block";
+    news.style.display = "none";
+
+    function newWeather() {
+      var location = document.getElementById("weather-input").value;
+      var newURL = `https://forecast7.com/en/43d65n79d38/${location}`;
+      document.getElementById("test").href = newURL;
+    }
+    function signout() {
+      event.preventDefault();
+      window.location.replace("./index.html");
+    }
+    function showTodo() {
+      todo.style.display = "block";
+      news.style.display = "none";
+    }
+
+    function showNews() {
+      todo.style.display = "none";
+      news.style.display = "block";
+      if (localStorage.getItem("news") === null) {
+        call();
+      } else if (!base_div.hasChildNodes()) {
+        createCards();
+      }
+    }
+
+    var taskData;
+    var taskList = [];
+    var strikeList = [];
+    var jsonTaskList;
+    var jsonStrikeList;
+
+    var btn = document.getElementById("add-task");
+    var addItemToList = document.getElementById("add-item");
+    var addStrikeItemToList = document.getElementById("add-strike-item");
+
+    function getItems() {
+      jsonTaskList = JSON.parse(localStorage.getItem("alpha"));
+      jsonStrikeList = JSON.parse(localStorage.getItem("beta"));
+    }
+
+    function renderList() {
+      addItemToList.innerHTML = "";
+      taskList = jsonTaskList;
+
+      for (var i = 0; i < taskList.length; i++) {
+        var listItem = document.createElement("li");
+        var completeButton = document.createElement("button");
+        var deleteButton = document.createElement("button");
+        completeButton.innerText = "complete";
+        completeButton.className = "list-button";
+        deleteButton.innerText = "Delete";
+        deleteButton.className = "list-button";
+
+        listItem.textContent = taskList[i];
+        completeButton.setAttribute("onClick", "strikeTodo(" + i + ")");
+        listItem.appendChild(completeButton);
+        deleteButton.setAttribute("onClick", "deleteTodo(" + i + ")");
+        listItem.appendChild(deleteButton);
+        addItemToList.appendChild(listItem);
+      }
+    }
+
+    function renderStrike() {
+      addStrikeItemToList.innerHTML = "";
+      if (jsonStrikeList.length != null) {
+        strikeList = jsonStrikeList;
+      }
+
+      for (var i = 0; i < strikeList.length; i++) {
+        var listItem = document.createElement("li");
+        var deleteButton = document.createElement("button");
+        var Content = strikeList[i];
+        deleteButton.innerText = "Delete";
+        deleteButton.className = "list-button";
+
+        Content.style = "text-decoration:line-through";
+        listItem.textContent = Content;
+
+        deleteButton.setAttribute("onClick", "deleteStrike(" + i + ")");
+        listItem.appendChild(deleteButton);
+        addStrikeItemToList.appendChild(listItem);
+      }
+    }
+
+    function deleteTodo(nameindex) {
+      taskList.splice(nameindex, 1);
+      localStorage.setItem("alpha", JSON.stringify(taskList));
+      getItems();
+      renderList();
+    }
+
+    function deleteStrike(nameindex) {
+      strikeList.splice(nameindex, 1);
+      localStorage.setItem("beta", JSON.stringify(strikeList));
+      getItems();
+      renderStrike();
+    }
+
+    function strikeTodo(nameindex) {
+      strikeList.push(taskList[nameindex]);
+      localStorage.setItem("beta", JSON.stringify(strikeList));
+      taskList.splice(nameindex, 1);
+      localStorage.setItem("alpha", JSON.stringify(taskList));
+
+      getItems();
+      renderList();
+      renderStrike();
+    }
+
+    function addTasks() {
+      event.preventDefault();
+      taskData = document.getElementById("add-todo").value;
+      if (taskData == "" || taskData.length == 0) {
+        alert("task cannot be empty:");
+      } else {
+        taskList.push(taskData);
+        localStorage.setItem("alpha", JSON.stringify(taskList));
+        getItems();
+        renderList();
+      }
+      document.getElementById("add-todo").value = "";
+    }
+
+    btn.addEventListener("click", addTasks);
+    if (localStorage.getItem("alpha") !== null) {
+      getItems();
+      renderList();
+      renderStrike();
+    }
+
+    // news scripting starts here:
+
+    var data = {};
+    function call() {
+      fetch(
+        "https://bing-news-search1.p.rapidapi.com/news?safeSearch=Strict&textFormat=Raw",
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+            "x-rapidapi-key":
+              "9c0b8ec9f2msh082db76641e74e1p195d92jsn0d30e44fb4d2",
+            "x-bingapis-sdk": "true",
+          },
+        }
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((responseData) => {
+          console.log("response", responseData.value);
+          localStorage.setItem("news", JSON.stringify(responseData.value));
+          return createCards();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    function createCards() {
+      data = JSON.parse(localStorage.getItem("news"));
+      var base_div = document.getElementById("base_div");
+      var bg = [
+        "modal-content bg-secondary",
+        "modal-content bg-success",
+        "modal-content bg-light",
+        "modal-content bg-info",
+        "modal-content bg-primary",
+      ];
+
+      for (i = 0; i < data.length; i++) {
+        var index = Math.floor(Math.random() * 5) + 0;
+        var bg_string = bg[index];
+
+        let col_mb_4 = document.createElement("div");
+        let card = document.createElement("div");
+        let card_body = document.createElement("div");
+        let card_header = document.createElement("div");
+        let paragraph = document.createElement("p");
+        let card_link = document.createElement("a");
+
+        col_mb_4.className = "col-sm-6 card-shadow";
+        card.className = " " + bg_string;
+        card_header.className = "card-header text-dark";
+
+        if (bg_string == "modal-content bg-light") {
+          card_body.className = "modal-body text-success";
+        } else {
+          card_body.className = "modal-body text-white";
+        }
+
+        if (bg_string == "modal-content bg-primary") {
+          card_link.className = "btn btn-secondary";
+        } else {
+          card_link.className = "btn btn-primary";
+        }
+
+        card_header.innerText = data[i].name;
+        paragraph.innerText = data[i].description;
+        card_link.innerText = "Read More...";
+        card_link.href = data[i].url;
+        card_link.target = "_blank";
+
+        card_body.appendChild(card_header);
+        card_body.appendChild(paragraph);
+        card_body.appendChild(card_link);
+
+        card.appendChild(card_body);
+        col_mb_4.appendChild(card);
+        // col_mb_4.setAttribute("click",'redirect('+i +')');
+        base_div.appendChild(col_mb_4);
+      }
+    }
+  </script>
+</html>

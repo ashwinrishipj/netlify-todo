@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Particles</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js/"></script>
+    <style>
+        .background {
+            background-color: cyan;
+        }
+
+        body,
+        #particle-js {
+            width: 100%;
+            height: 100%;
+            background: #1b1818;
+            overflow-x: hidden;
+        }
+
+        .center {
+            position: fixed;
+            left: 28%;
+            top: 25%;
+            align-items: center;
+            color: whitesmoke;
+        }
+
+        .card {
+            box-shadow: 0 8px 16px 0 rgba(255, 227, 227, 0.2);
+            width: 40%;
+            height: 55%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (max-width: 600px) {
+            .card{
+                width : 85%;
+            }
+            .center{
+                left: 10%;
+            }
+        }
+        .container {
+            padding: 2px 16px;
+            user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+        }
+
+        input {
+            display: inline-block;
+            border: 1px solid #ddd;
+            font-family: Lato, sans-serif;
+            border-radius: 6px;
+            margin: 0% 0% 2% 20%;
+            font-size: medium;
+            width: 60%;
+            height: 30px;
+            outline: none;
+            color: #888;
+        }
+
+        input[type=password]::-ms-reveal,
+        input[type=password]::-ms-clear {
+            display: none;
+        }
+
+        h1 {
+            color: rgb(71, 71, 221);
+            text-align: center;
+            font-size: x-large;
+            text-decoration: underline;
+        }
+
+        .error {
+            margin-left: -6%;
+            color: green;
+            font-size: small;
+        }
+
+        label {
+            display: inline-block;
+            margin-left: 20%;
+            margin-top: 1%;
+            font-size: larger;
+            color: rgba(248, 248, 248, 0.486);
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 6s;
+            animation: animatezoom 6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .button-login {
+            border-radius: 7px;
+            border: solid #008CBA;
+            background-color: transparent;
+            color: #008CBA;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .button-login:hover {
+            border: solid #008CBA;
+            ;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        .button-login:active {
+            box-shadow: 0 0 .5px;
+            transform: translateY(8px);
+            color: red;
+        }
+
+
+
+        .list-button {
+            cursor: pointer;
+            float: right;
+            background: none;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: green;
+            font-size: 17px;
+            width: 80px;
+            margin-top: 7px;
+        }
+
+        .list-button:active {
+            transform: translateY(6px);
+        }
+
+        .list-button:hover {
+            color: red
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="Login-Page">
+        <div id="particles-js">
+            <div class="center card animate">
+                <div class="container">
+                    <h1>Login</h1>
+                    <form autocomplete="off" onsubmit="handleLogin()">
+                        <label for="username"> emailId </label>
+                        <input type="text" oninput="validateEmail(this.value)" id="username"
+                            placeholder="sample@domain.com" required return false;>
+                        <span class="error" id="0">
+                        </span>
+                        </input>
+                        <label for="password"> password</label>
+                        <input type="password" oninput="validatePassword(this.value)" id="password"
+                            placeholder="**********" required return false; />
+                        <span class="error" id="1">
+                        </span>
+                        </input>
+                        <div style="text-align: center !important;">
+                            <button id="btn-log" type="submit" class="button-login">Validate</button>
+                            <p class="note">
+                                <u>NOTE:</u> <br />
+                                <li>Enter valid email id of yours:</li>
+                                <li>enter any alpha numerical password of more than 4 digits <b> ex: "Aab1" </b> </li>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    var login = document.getElementById("Login-Page");
+
+    /* ---- particles.js config ---- */
+    function particle() {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 8
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.95486864637505,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 0.7300395032486761,
+                        "opacity_min": 0.6570355529238084,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 173.61248115909999,
+                    "color": "#0077ff",
+                    "opacity": 1,
+                    "width": 1.2626362266116362
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        })
+    }
+    particle();
+
+    var emailError = true;
+    function validateEmail(inputEmail) {
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputEmail.match(mailformat)) {
+            document.getElementById(0).innerHTML = String.fromCharCode(10004);
+            emailError = false;
+        }
+        else {
+            document.getElementById(0).innerHTML = String.fromCharCode(10060);
+            emailError = true;
+        }
+    }
+
+    var passwordError = true;
+    function validatePassword(inputPassword) {
+        var passwordformat = /^[a-zA-Z]\w{3,14}$/;
+        if (inputPassword.match(passwordformat)) {
+            document.getElementById(1).innerHTML = String.fromCharCode(10004);
+            passwordError = false;
+            if (emailError == false) {
+                btn.disabled = false;
+            }
+        }
+        else {
+            document.getElementById(1).innerHTML = String.fromCharCode(10060);
+            passwordError = true;
+        }
+    }
+
+
+    function handleLogin() {
+        event.preventDefault();
+        if (emailError || passwordError == true) {
+            alert(" please enter valid email and password");
+        }
+        else {
+            window.location.replace("./home.html");
+        }
+    }
+</script>
+
+</html>
